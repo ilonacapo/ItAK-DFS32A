@@ -7,7 +7,7 @@ int main()
     Joueur *joueur1 = set_joueur(joueur1), *joueur2 = set_joueur(joueur2);
     /*joueur1 = give_cards(joueur1);
     joueur2 = give_cards(joueur2);*/
-    Carte map[3][5];
+    //Carte map[3][5];
 
     printf("Début de la partie !\n");
 
