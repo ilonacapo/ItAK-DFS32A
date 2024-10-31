@@ -56,18 +56,18 @@ void tourJoueur(Joueur *joueur, Carte map[3][5]) {
         return;
     }
 
-    if (choix < 1 || choix > 5 || joueur->carte_j[choix - 1].force <= 0) {
-        printf("Choix invalide, tour annulé.\n");
-        return;
-    } 
+if (choix < 1 || choix > 5) {
+    printf("Choix invalide, veuillez entrer un numéro entre 1 et 5.\n");
+    return;
+}
 
     const char *couleurs[] = {"Blanc", "Gris", "Noir", "Bleu", "Orange", "Rouge", "Violet", "Rose", "Jaune", "Vert"};
     printf("\n--- Vous avez choisi ---\n[-niveau: %d -couleur: %s -force: %d]\n",
-           joueur->carte_j[choix - 1].niveau, 
-           couleurs[joueur->carte_j[choix - 1].couleur], 
-           joueur->carte_j[choix - 1].force);
+           joueur->cartes_j[choix - 1]->niveau, 
+           couleurs[joueur->cartes_j[choix - 1]->couleur], 
+           joueur->cartes_j[choix - 1]->force);
 
-    if (joueur->carte_j[choix - 1].force > 0) {
+    if (joueur->cartes_j[choix - 1]->force > 0) {
         play_time(joueur, choix - 1, map);
     } else {
         printf("Cette carte ne peut pas être jouée!\n");

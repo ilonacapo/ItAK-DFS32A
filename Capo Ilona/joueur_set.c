@@ -7,11 +7,20 @@ Joueur *set_joueur() {
     if (joueur != NULL) {
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 5; col++) {
-                joueur->cartes_j[row][col] = (Carte){0}; 
+                Niveau niveau = (Niveau)(rand() % 3);  
+                Couleur couleur = (Couleur)(rand() % 10);  
+                int force = (rand() % 5 + 2) * ((niveau == Niveau_3) ? 2 : 1); 
+
+                Carte *carte = set_carte(niveau, couleur, force);
+                if (carte != NULL) {
+                    joueur->cartes_j[row][col] = *carte;  
+                    free(carte); 
+                }
             }
         } 
         
     }
+    joueur->score = 0;
     return joueur;
 }
 

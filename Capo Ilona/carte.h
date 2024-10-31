@@ -8,10 +8,13 @@
     typedef enum {Force_2 = 2, Force_3, Force_4, Force_5, Force_6, Force_10} Force;
     typedef enum {blanc, gris, noir, bleu, orange, rouge, violet, rose, jaune, vert} Couleur;
 
+    typedef void (*Fct)(void);
+
     typedef struct Carte {
         Niveau niveau;
         Couleur couleur;
         Force force;
+        Fct fct;
     } Carte;
 
     typedef struct Joueur {
