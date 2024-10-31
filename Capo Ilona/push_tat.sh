@@ -5,11 +5,11 @@ if [ -z "$1" ]; then
     echo "Usage : ./push_that 'Votre message de commit'"
     exit 1
 fi
-gi checkout ilona
+gi checkout Capo-Ilona-ItAK-DFS32A
 git add "*"
 
 git commit -m "$1"
 
-git push origin ilona
+git push origin Capo-Ilona-ItAK-DFS32A
 
 echo "Commit et push effectués avec succès."
