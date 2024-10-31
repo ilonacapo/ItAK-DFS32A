@@ -5,8 +5,8 @@ if [ -z "$1" ]; then
     echo "Usage : ./push_that 'Votre message de commit'"
     exit 1
 fi
-
-git add .
+gi checkout ilona
+git add "*"
 
 git commit -m "$1"
 
