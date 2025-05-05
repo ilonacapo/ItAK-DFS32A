@@ -6,7 +6,7 @@ Nous améliorerons notre code au fur et à mesure des exercices, en implémantan
 
 *Tips* : Pour exécuter le programme, vous pouvez utiliser Docker pour travailler sur la dernière version de Php sans avoir à l'installer directement dans votre environnement :
 ```sh
-docker run --rm -v "$(pwd)/D46_Design_Pattern":/app -w /app php:8.4-cli-alpine php src/Application/main.php
+docker run --rm -v "$(pwd)/D46_Php_Design_Patterns":/app -w /app php:8.4-cli-alpine php src/Application/main.php
 ```
 
 *Ressources utiles* :
