@@ -24,29 +24,53 @@ Créez une structure de classes pour matérialiser ce modèle. Pensez à découp
 
 Vous livrerez une instanciation complète de chacune des classes du modèle dans le fichier `main.php`.
 
-## Builder / Prototype
+## Factory & Builder
 
-Le pattern Prototype permet de créer des objets à partir d'une définition dynamique (les attributs peuvent être variables sans avoir à créer de nouvelles classes).
+Nous allons maintenant afficher dans le terminal la liste des Produits du fichier `data/products.json`.
 
-Le pattern Builder permet de modifier le cycle de création d'un objet de manière dynamique (comme par exemple ajouter des filtres de recherche).
+Utilisez les notions vues en cours pour :
+ - Charger la liste des produits en json
+ - Créer de manière transparente des objets Marchandise ou Service à partir de ces données
+ - Les renvoyer sous forme d'un générateur
 
-Nous allons appliquer ces deux patterns pour créer nos objets `Produit` à partir d'une source de données externe, et ensuite de permettre de lui donner une structure différente en fonction de son `TypeProduit`.
+Nous allons maintenant implémenter des filtres dans la lecture des produits dans le fichier json via un builder.
 
-Code cible :
+Implémentez ce pattern via la fonction "filter" telle que présentée dans l'exemple ci-dessous :
 ```php
 // main.php
 
-$.... = (new ....Builder())
-    ->from('data/products.json')
-    ->addfilter(fn(array $data) => $data['....'] == '.....')
-    ->setPrototype(...Prototype)
-    ->build()
-;
+// Tips : dirname, __FILE__, is_file, file_get_contents
 
-foreach ($..... as $produit) {
-    var_dump($produit);
+function main(string $datasourceFile)
+{
+    $datasourcePath = // ....
+
+    $builder = new JsonFileProductBuilder(
+        new /* ........([   => ....::class ])*/
+    );
+
+    $productCollection = $builder->createFrom($datasourcePath)
+        ->filter(fn(array $productData) => $productData['....'] > '?')
+        ->getCollection()
+    ;
+
+    foreach ($productCollection as $product) {
+        var_dump($product);
+    }
 }
 
+main(...$argv);
 ```
 
-Vous respecterez les principes SOLID.
+Vous prendrez grand soin à respecter les principes SOLID et à tester vos cas d'erreur en utilisant des exceptions.
+
+## Adapter
+
+
+
+
+## Prototype
+
+Le pattern Prototype permet de créer des objets à partir d'une définition dynamique (les attributs peuvent être variables sans avoir à créer de nouvelles classes).
+
+Dans notre exemple, nous avons deux grands types de produits : les marchandises et les services, qui possèdent chacun des attributs différents. Nous souhaitons malgré tout avoir une classe de produits commune pour tous les achats. Afin de ne pas avoir en permanence des attributs null à tester, il faut utiliser un Prototype.
